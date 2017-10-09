@@ -1,0 +1,138 @@
+app:
+    resource: '@AppBundle/Controller/'
+
+gui:
+    path: /
+    defaults: {_controller: AppBundle\Controller\GUIController::indexAction}
+    methods: [GET]
+
+
+
+API.reviews.testAnalyzer:
+    path: /api/reviews/testAnalyzer/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::testAnalyzer}
+    methods: [POST]
+
+API.reviews.analyzeAll:
+    path: /api/reviews/analyze/all/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::analyzeAllReviews}
+    methods: [GET, POST]
+
+API.reviews.analyze:
+    path: /api/reviews/analyze/{reviewId}
+    defaults: {_controller: AppBundle\Controller\ReviewsController::analyzeReview}
+    methods: [POST]
+
+API.reviews.get:
+    path: /api/reviews/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::getReviews}
+    methods: [GET]
+
+API.reviews.upload:
+    path: /api/reviews/upload/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::uploadReviews}
+    methods: [POST, PUT]
+
+API.reviews.new:
+    path: /api/reviews/new/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::newReview}
+    methods: [POST]
+
+API.reviews.modify:
+    path: /api/reviews/modify/
+    defaults: {_controller: AppBundle\Controller\ReviewsController::modifyReview}
+    methods: [POST]
+
+API.reviews.delete:
+    path: /api/reviews/delete/{reviewId}
+    defaults: {_controller: AppBundle\Controller\ReviewsController::deleteReview}
+    methods: [DELETE]
+
+
+
+
+API.topics.get:
+    path: /api/topics/
+    defaults: {_controller: AppBundle\Controller\TopicsController::getTopics}
+    methods: [GET]
+
+API.topics.new:
+    path: /api/topics/new/
+    defaults: {_controller: AppBundle\Controller\TopicsController::newTopic}
+    methods: [POST]
+
+API.topics.modify:
+    path: /api/topics/modify/
+    defaults: {_controller: AppBundle\Controller\TopicsController::modifyTopic}
+    methods: [POST]
+
+API.topics.delete:
+    path: /api/topics/delete/{topicId}
+    defaults: {_controller: AppBundle\Controller\TopicsController::deleteTopic}
+    methods: [DELETE]
+
+
+API.topics.getTopicAliases:
+    path: /api/topics/aliases/
+    defaults: {_controller: AppBundle\Controller\TopicsAliasesController::getTopicAliases}
+    methods: [GET]
+
+API.topics.newAlias:
+    path: /api/topics/aliases/new/
+    defaults: {_controller: AppBundle\Controller\TopicsAliasesController::newTopicAlias}
+    methods: [POST]
+
+API.topics.modifyAlias:
+    path: /api/topics/aliases/modify/
+    defaults: {_controller: AppBundle\Controller\TopicsAliasesController::modifyTopicAlias}
+    methods: [POST]
+
+API.topics.deleteAlias:
+    path: /api/topics/aliases/delete/{aliasId}
+    defaults: {_controller: AppBundle\Controller\TopicsAliasesController::deleteTopicAlias}
+    methods: [DELETE]
+
+
+
+
+API.criteria.get:
+    path: /api/criteria
+    defaults: {_controller: AppBundle\Controller\CriteriaController::getCriteria}
+    methods: [GET]
+
+API.criteria.new:
+    path: /api/criteria/new/
+    defaults: {_controller: AppBundle\Controller\CriteriaController::newCriteria}
+    methods: [POST]
+
+API.criteria.modify:
+    path: /api/criteria/modify/
+    defaults: {_controller: AppBundle\Controller\CriteriaController::modifyCriteria}
+    methods: [POST]
+
+API.criteria.delete:
+    path: /api/criteria/delete/{criteriaId}
+    defaults: {_controller: AppBundle\Controller\CriteriaController::deleteCriteria}
+    methods: [DELETE]
+
+
+
+API.emphasizers.get:
+    path: /api/emphasizers/
+    defaults: {_controller: AppBundle\Controller\EmphasizersController::getEmphasizer}
+    methods: [GET]
+
+API.emphasizers.new:
+    path: /api/emphasizers/new/
+    defaults: {_controller: AppBundle\Controller\EmphasizersController::newEmphasizer}
+    methods: [POST]
+
+API.emphasizers.modify:
+    path: /api/emphasizers/modify/
+    defaults: {_controller: AppBundle\Controller\EmphasizersController::modifyEmphasizer}
+    methods: [POST]
+
+API.emphasizers.delete:
+    path: /api/emphasizers/delete/{emphasizerId}
+    defaults: {_controller: AppBundle\Controller\EmphasizersController::deleteEmphasizer}
+    methods: [DELETE]

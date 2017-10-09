@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" id="main_container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://{{ httpHost }}">Case Study</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li id="navReviewsButton" class="active"><a href="#">Reviews</a></li>
+                        <li id="navTopicsButton"><a href="#">Topics</a></li>
+                        <li id="navCriteriaButton"><a href="#">Criteria</a></li>
+                        <li id="navEmphasizersButton"><a href="#">Emphasizers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="customSectionButtons" class="row">
+            <div id="reviewsButtons" class="col-xs-6">
+                <button id="testAnalyzerButton" class="btn btn-primary">Test analyzer</button>
+                <button id="analyzeAllButton" class="btn btn-primary">Analyze ALL reviews</button>
+                <button id="uploadReviewsButton" class="btn btn-primary">Upload reviews (CSV file)</button>
+            </div>
+            <div id="topicsButtons" class="col-xs-6">
+                <button id="topicAliasesGridButton" class="btn btn-primary">Switch to aliases</button>
+            </div>
+        </div>
+        <div id="jsGrid"></div>
+
+        <div id="testAnalyzerModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Analyzer test</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <textarea id="textareaReviewTestAnalyze" class="form-control" placeholder="Write the review here..." rows="5"></textarea>
+                            </div>
+                            <div class="col-xs-12">
+                                <button id="modalTestAnalyzeButton" class="btn btn-primary">Analyze</button>
+                                <pre id="json-renderer"></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalReviewDetailedResults" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Detailed results</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Topic</th>
+                                    <th>Criteria</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalUploadFile" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Upload CSV File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadCSVForm" enctype="multipart/form-data">
+                            <label for="csvFileInput">CSV file</label>
+                            <input name="csvFile" type="file" id="csvFileInput" class="form-control"></input>
+                            <br />
+                            <label for="csvFileInput">Separator</label>
+                            <select name="csvSeparator" class="form-control" id="csvSeparatorSelect">
+                                <option value="lineBreaks">Line breaks</option>
+                                <option value="pipes">Pipes ( | )</option>
+                            </select>
+                            <br />
+                            <button class="btn btn-primary" id="formButtonUploadCSV">Upload</button>
+                            <br />
+                            <progress id="csvUploadProgress" value="0" max="0"></progress>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="css/index.css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="js/dist/bundle.js"></script>
+    <script>
+        window.AnalyzerGUI.init({
+            httpHost: "{{ httpHost }}"
+        });
+    </script>
+{% endblock %}
